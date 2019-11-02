@@ -3,20 +3,20 @@ package hack.gsu.trademate;
 import java.util.Date;
 
 public class Post {
-    public String name,imageUrl,cost,product;
+    public String name,imageUrl,cost,title;
 
 
     public Post () {
 
     }
 
-    public Post ( String name,String product, String imageUrl,String cost){
+    public Post ( String name ,String title, String imageUrl,String cost){
         this.name = name;
         this.imageUrl=imageUrl;
         this.cost= cost;
 
 
-        this.product=product;
+        this.title=title;
     }
 
     public String getName() {
@@ -43,11 +43,11 @@ public class Post {
         this.imageUrl = imageUrl;
     }
 
-    public String getProduct() {
-        return product;
+    public String getTitle() {
+        return title;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
