@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FinishSignUpActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -60,7 +61,7 @@ public class FinishSignUpActivity extends AppCompatActivity {
 
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 //                mDatabase.child("users").child(name);
-                mDatabase.child("Classes").child(classId).child(name).setValue(user);
+                mDatabase.child("Classes").child(name).setValue(school);
                 Intent intToMain = new Intent(FinishSignUpActivity.this, HomeActivity.class);
                 startActivity(intToMain);
 
