@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String pwd = password.getText().toString();
                 String confirm = confirmPassword.getText().toString();
                 if(email.isEmpty()){
-                    emailId.setError("Please enter email id");
+                    emailId.setError("Please enter your email");
                     emailId.requestFocus();
                 }
                 else  if(pwd.isEmpty()){
