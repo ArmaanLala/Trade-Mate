@@ -25,13 +25,14 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.editName);
-        password = findViewById(R.id.editCollege);
-        btnSignUp = findViewById(R.id.signUp);
-        tvSignIn = findViewById(R.id.textView);
+        emailId = findViewById(R.id.editEmail);
+        password = findViewById(R.id.editPassword);
+        btnSignUp = findViewById(R.id.buttonSignUp);
+        Button login = findViewById(R.id.buttonLogin);
+       // tvSignIn = findViewById(R.id.textView);
         confirmPassword = findViewById(R.id.editConfirm);
 
 
@@ -80,11 +81,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        tvSignIn.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SignUpActivity.this,LoginActivity.class);
-                startActivity(i);
+                Intent intSignUp = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intSignUp);
             }
         });
     }

@@ -29,7 +29,11 @@ public class FinishSignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finish_signup;
+        setContentView(R.layout.activity_finish);
+
+        finishButton = findViewById(R.id.buttonFinish);
+        editName = findViewById(R.id.editName);
+        editSchool = findViewById(R.id.editCollege);
 
         if (user != null) {
 
@@ -46,8 +50,8 @@ public class FinishSignUpActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName("Jane Q. User")
-                        .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                        .setDisplayName(name)
+                        //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
                         .build();
 
                 user.updateProfile(profileUpdates)
