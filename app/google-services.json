@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "488535503397",
+    "firebase_url": "https://trade-mate-d57aa.firebaseio.com",
+    "project_id": "trade-mate-d57aa",
+    "storage_bucket": "trade-mate-d57aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488535503397:android:e1455d090b8bedbcbec5cc",
+        "android_client_info": {
+          "package_name": "hack.gsu.trademate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488535503397-9310m3sftidpshoscc69kj55hb2vh433.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hack.gsu.trademate",
+            "certificate_hash": "b9c256750a85be4f3c3c6072ca47ccce3be80576"
+          }
+        },
+        {
+          "client_id": "488535503397-pm0shj2proratqbt2r94qo8njei2ed1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv40pmtWiqPUzG8BG4F9CFszOSMBTZ6S0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488535503397-pm0shj2proratqbt2r94qo8njei2ed1l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
