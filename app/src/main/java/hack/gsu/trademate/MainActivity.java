@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button add = findViewById(R.id.buttonAdd);
         //initialize recyclerview and FIrebase objects
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (mAuth.getCurrentUser()==null){
+                if (mAuth.getCurrentUser() == null) {
                     Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);startActivity(loginIntent);
+                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(loginIntent);
                 }
             }
         };
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -77,33 +79,35 @@ public class MainActivity extends AppCompatActivity {
         };
         recyclerView.setAdapter(FBRA);
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         View mView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
-        public void setTitle(String title){
+
+        public void setTitle(String title) {
             TextView post_title = mView.findViewById(R.id.post_title_txtview);
             post_title.setText(title);
         }
-        public void setDesc(String desc){
+
+        public void setDesc(String desc) {
             TextView post_desc = mView.findViewById(R.id.post_desc_txtview);
             post_desc.setText(desc);
         }
-        public void setImageUrl(Context ctx, String imageUrl){
+
+        public void setImageUrl(Context ctx, String imageUrl) {
             ImageView post_image = mView.findViewById(R.id.post_image);
-            Glide.with(ctx).load(imageUrl).dontAnimate().fitCenter().into(post_image);
+            Picasso.with(ctx).load(imageUrl).into(post_image);
 //           Picasso.get().load("http://goo.gl/gEgYUd").into(post_image);
             //glideImage(ctx,post_image);
         }
-        public void setUserName(String userName){
+
+        public void setUserName(String userName) {
             TextView postUserName = mView.findViewById(R.id.post_user);
             postUserName.setText(userName);
         }
-    }
-    public static void glideImage (Context ctx, ImageView post_image ) {
-        Picasso.get().load("http://goo.gl/gEgYUd").into(post_image);
-
     }
 }

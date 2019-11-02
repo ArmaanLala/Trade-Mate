@@ -52,7 +52,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseUsers;
     private FirebaseUser mCurrentUser;
-
+    public static String temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,7 @@ public class CreatePostActivity extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
         imageBtn = (ImageButton)findViewById(R.id.imageBtn);
+
         //picking image from gallery
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +95,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
 //                            @SuppressWarnings("VisibleForTests")
                             //getting the post image download
-                            final String s = "";
-               taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                   @Override
-                   public void onComplete(@NonNull Task<Uri> task) {
-                       s = task.getResult().toString();
-                   }
-               });
-
-
+                            final Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             Toast.makeText(getApplicationContext(), "Succesfully Uploaded", Toast.LENGTH_SHORT).show();
                             final DatabaseReference newPost = databaseRef.push();
                             //adding post contents to database reference
@@ -111,7 +104,7 @@ public class CreatePostActivity extends AppCompatActivity {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     newPost.child("title").setValue(PostTitle);
                                     newPost.child("cost").setValue(PostDesc);
-                                    newPost.child("imageUrl").setValue();
+                                    newPost.child("imageUrl").setValue(downloadUrl.toString());
                                     newPost.child("uid").setValue(mCurrentUser.getUid());
                                     newPost.child("name").setValue(mCurrentUser.getDisplayName())
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -149,5 +142,11 @@ public class CreatePostActivity extends AppCompatActivity {
             uri = data.getData();
             imageBtn.setImageURI(uri);
         }
+
+    }
+
+
+    public static void setString(String t){
+        temp = t;
     }
 }
