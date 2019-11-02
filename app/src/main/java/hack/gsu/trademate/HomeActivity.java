@@ -18,11 +18,13 @@ import android.os.Bundle;
 //import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -33,10 +35,36 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.text);
+        Button signOut = findViewById(R.id.buttontest);
+        TextView test = findViewById(R.id.textView2);
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+        } else {
+            // No user is signed in
+            Intent i = new Intent(HomeActivity.this, SignUpActivity.class);
+            startActivity(i);
+        }
+        test.setText(user.getDisplayName());
+
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intSignUp = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intSignUp);
+            }
+        });
+
+
+
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        //initialize recyclerview and FIrebase objects
@@ -112,6 +140,11 @@ public class HomeActivity extends AppCompatActivity {
 //        // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
 //        return true;
+
+
+
+
+
     }
 
 }
