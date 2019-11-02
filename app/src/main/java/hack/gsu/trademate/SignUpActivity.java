@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText emailId, password;
+    EditText emailId, password,confirmPassword;
     Button btnSignUp;
     TextView tvSignIn;
     FirebaseAuth mFirebaseAuth;
@@ -29,10 +29,11 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.editText);
-        password = findViewById(R.id.editText2);
-        btnSignUp = findViewById(R.id.button2);
+        emailId = findViewById(R.id.editEmail);
+        password = findViewById(R.id.editPassword);
+        btnSignUp = findViewById(R.id.signUp);
         tvSignIn = findViewById(R.id.textView);
+        confirmPassword = findViewById(R.id.editConfirm);
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailId.getText().toString();
                 String pwd = password.getText().toString();
+                String confirm = confirmPassword.getText().toString();
                 if(email.isEmpty()){
                     emailId.setError("Please enter email id");
                     emailId.requestFocus();
@@ -48,10 +50,14 @@ public class SignUpActivity extends AppCompatActivity {
                     password.setError("Please enter your password");
                     password.requestFocus();
                 }
+                else if (confirm.isEmpty()){
+                    confirmPassword.setError("Please confirm your password");
+                    confirmPassword.requestFocus();
+                }
                 else  if(email.isEmpty() && pwd.isEmpty()){
                     Toast.makeText(SignUpActivity.this,"Fields Are Empty!",Toast.LENGTH_SHORT).show();
                 }
-                else  if(!(email.isEmpty() && pwd.isEmpty())){
+                else  if(!(email.isEmpty() && pwd.isEmpty() && pwd.equals(confirm))){
                     mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -63,6 +69,10 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     });
+                }
+                else if (!pwd.equals(confirm)){
+                    confirmPassword.setError("The Passwords do not match");
+                    confirmPassword.requestFocus();
                 }
                 else{
                     Toast.makeText(SignUpActivity.this,"Error Occurred!",Toast.LENGTH_SHORT).show();
