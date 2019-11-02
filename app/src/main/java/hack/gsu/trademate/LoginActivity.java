@@ -1,4 +1,4 @@
 package hack.gsu.trademate;
 
-public class FinishSignUp {
+public class LoginActivity {
 }
