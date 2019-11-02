@@ -52,7 +52,7 @@ public class FinishSignUpActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
+                                if (task.isSuccessful()){
                                     Log.d(TAG, "User profile updated.");
                                 }
                             }
