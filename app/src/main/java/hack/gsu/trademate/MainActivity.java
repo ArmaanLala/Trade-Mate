@@ -104,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-                if( mFirebaseUser != null ){
+                if( mFirebaseUser == null ){
                     Toast.makeText(MainActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(i);
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Please Login",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(i);
+
                 }
             }
         };
