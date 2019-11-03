@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/editEmail"
+        android:id="@+id/editEmaillog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editPassword"
+        android:id="@+id/editPasswordlog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
@@ -47,13 +47,13 @@
         android:layout_width="149dp"
         android:layout_height="60dp"
         android:layout_marginTop="72dp"
+        android:layout_marginBottom="176dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/baloo_bhai"
         android:text="Login"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPassword"
         app:layout_constraintVertical_bias="0.0" />

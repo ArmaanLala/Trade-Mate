@@ -82,6 +82,7 @@ public class CreatePostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Toast.makeText(CreatePostActivity.this, "POSTING...", Toast.LENGTH_LONG).show();
+                postBtn.setEnabled(false);
                 final String PostTitle = textTitle.getText().toString().trim();
                 final String PostDesc = textDesc.getText().toString().trim();
                  Uri downloadUrl2;
@@ -108,6 +109,7 @@ public class CreatePostActivity extends AppCompatActivity {
                                     newPost.child("uid").setValue(mCurrentUser.getUid());
                                     newPost.child("taken").setValue(false);
                                     newPost.child("key").setValue(newPost.getKey());
+                                    newPost.child("buyer").setValue("");
                                     newPost.child("name").setValue(mCurrentUser.getDisplayName())
 
 

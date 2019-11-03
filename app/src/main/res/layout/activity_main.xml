@@ -23,16 +23,25 @@
     android:background="@drawable/diff"
     tools:context="hack.gsu.trademate.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar">
+
+    </androidx.appcompat.widget.Toolbar>
+
     <include
         android:id="@+id/include"
         layout="@layout/content_main"
+
         tools:layout_editor_absoluteX="-89dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="82dp"
-        android:layout_height="75dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_gravity="right"
         android:adjustViewBounds="true"
@@ -42,10 +51,10 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946"
-        app:srcCompat="@drawable/plus"/>
+        app:layout_constraintVertical_bias="0.961"
+        app:srcCompat="@drawable/plus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

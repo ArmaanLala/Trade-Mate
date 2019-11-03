@@ -31,18 +31,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.editEmail);
-        password = findViewById(R.id.editPassword);
+        emailId = findViewById(R.id.editEmaillog);
+        password = findViewById(R.id.editPasswordlog);
         btnSignIn = findViewById(R.id.buttonLogin);
         Button newUser = findViewById(R.id.buttonNewUser);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
                 if( mFirebaseUser != null ){
                     Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, LoadActivity.class);
+                    Intent i = new Intent(LoginActivity.this, FinishSignUpActivity.class);
                     startActivity(i);
                 }
                 else{
