@@ -20,6 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/diff"
     tools:context="hack.gsu.trademate.MainActivity">
 
 <include layout="@layout/content_main" />
@@ -32,5 +33,13 @@
 
 
     </Button>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="242dp"
+        android:layout_height="322dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        app:srcCompat="@drawable/plus" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
