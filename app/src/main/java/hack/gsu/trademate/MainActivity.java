@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolbar);
         ImageButton add = findViewById(R.id.imageButton);
         //initialize recyclerview and FIrebase objects
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
         mAuth = FirebaseAuth.getInstance();
+//        mAuth.signOut();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -74,20 +79,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(ViewHolder viewHolder, Post model, int position) {
                 final String post_key = getRef(position).getKey().toString();
+                Button testWant = viewHolder.mView.findViewById(R.id.buttonWantToBuy);
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getCost());
                 viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
                 viewHolder.setUserName(model.getName());
                 viewHolder.setTakenButton(model.isTaken());
-                Button testWant = viewHolder.mView.findViewById(R.id.buttonWant);
+                if(model!= null && model.getBuyer()!=null) {
+                    if (model.getBuyer().isEmpty()) {
+
+
+                        viewHolder.setBuyerText(model.getBuyer());
+                    } else {
+                        viewHolder.setBuyerText(model.getBuyer() + " has claimed this item");
+                        testWant.setEnabled(false);
+                    }
+                }
+
                 testWant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DatabaseReference mDatabase;
-// ...
+                        testWant.setEnabled(false);
                         mDatabase = FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getKey());
                         mDatabase.child("taken").setValue(true);
                         viewHolder.setTakenButton(true);
+                        mDatabase.child("buyer").setValue(mAuth.getCurrentUser().getDisplayName());
+                        viewHolder.setBuyerText(mAuth.getCurrentUser().getDisplayName()  + " has claimed this item");
                         Toast.makeText(MainActivity.this,"Congrats, it is now yours",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -98,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View mView;
-        Button want;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -125,17 +144,50 @@ public class MainActivity extends AppCompatActivity {
             TextView postUserName = mView.findViewById(R.id.post_user);
             postUserName.setText(userName);
         }
-         public void setTakenButton(boolean taken){
-              want = mView.findViewById(R.id.buttonWant);
-                if (taken) {
+        public void setBuyerText(String buy) {
+            TextView postBuyer = mView.findViewById(R.id.post_buyer);
+            postBuyer.setText(buy);
+        }
+         public void setTakenButton(boolean take){
+              Button want = mView.findViewById(R.id.buttonWantToBuy);
+                if (take==true) {
+                    want.setText("The Object is taken");
+                    want.setEnabled(false);
                     want.setBackgroundColor(Color.GREEN);
-                    want.setText("Taken");
                 } else {
+//                  want.setBackgroundResource(android.R.drawable.btn_default);
+                    want.setText("I want it ");
+                    want.setEnabled(true);
 
+//                    want.setBackgroundColor(Color.GREEN);
 
                 }
 
             }
 
         }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.logout) {
+            mAuth.signOut();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+

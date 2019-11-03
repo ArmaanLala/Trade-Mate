@@ -2,16 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="10dp"
     android:layout_height="match_parent"
-     tools:context="hack.gsu.trademate.MainActivity"
+    android:layout_margin="10dp"
+
+    android:orientation="vertical"
+    tools:context="hack.gsu.trademate.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
 
     </androidx.recyclerview.widget.RecyclerView>
 

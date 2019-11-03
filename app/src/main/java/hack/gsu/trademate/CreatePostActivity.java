@@ -59,12 +59,14 @@ public class CreatePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         // initializing objects
         postBtn = (Button)findViewById(R.id.postBtn);
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
         textDesc = (EditText)findViewById(R.id.textDesc);
         textTitle = (EditText)findViewById(R.id.textTitle);
         storage = FirebaseStorage.getInstance().getReference();
-        databaseRef = database.getInstance().getReference().child("Posts");
-        mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        String s = database.getInstance().getReference().child("Colleges").child(mCurrentUser.getDisplayName()).getKey();
+        databaseRef = database.getInstance().getReference().child("Posts").child(s);
+
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
         imageBtn = (ImageButton)findViewById(R.id.imageBtn);
 
@@ -82,6 +84,7 @@ public class CreatePostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Toast.makeText(CreatePostActivity.this, "POSTING...", Toast.LENGTH_LONG).show();
+                postBtn.setEnabled(false);
                 final String PostTitle = textTitle.getText().toString().trim();
                 final String PostDesc = textDesc.getText().toString().trim();
                  Uri downloadUrl2;
@@ -108,6 +111,7 @@ public class CreatePostActivity extends AppCompatActivity {
                                     newPost.child("uid").setValue(mCurrentUser.getUid());
                                     newPost.child("taken").setValue(false);
                                     newPost.child("key").setValue(newPost.getKey());
+                                    newPost.child("buyer").setValue("");
                                     newPost.child("name").setValue(mCurrentUser.getDisplayName())
 
 

@@ -35,13 +35,6 @@ public class FinishSignUpActivity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         editSchool = findViewById(R.id.editCollege);
 
-        if (user != null) {
-
-            // User is signed in
-        } else {
-            Intent i = new Intent(FinishSignUpActivity.this, SignUpActivity.class);
-            startActivity(i);
-        }
 
         finishButton.setOnClickListener((v) -> {
             String name = editName.getText().toString();
@@ -66,7 +59,7 @@ public class FinishSignUpActivity extends AppCompatActivity {
 
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 //                mDatabase.child("users").child(name);
-                mDatabase.child("Classes").child(name).setValue(school);
+                mDatabase.child("Colleges").child(name).setValue(school);
                 Intent intToMain = new Intent(FinishSignUpActivity.this, LoadActivity.class);
                 startActivity(intToMain);
 
