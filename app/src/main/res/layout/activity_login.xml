@@ -13,50 +13,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="308dp"
         android:layout_marginEnd="99dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.864" />
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="396dp"
+        android:layout_marginTop="392dp"
         android:layout_marginEnd="99dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName|textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.277" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="149dp"
         android:layout_height="60dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginBottom="108dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/baloo_bhai"
         android:text="Login"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.968" />
 
     <Button
         android:id="@+id/buttonNewUser"
@@ -75,8 +73,8 @@
 
     <ImageView
         android:id="@+id/TradeView"
-        android:layout_width="408dp"
-        android:layout_height="306dp"
+        android:layout_width="349dp"
+        android:layout_height="271dp"
         android:adjustViewBounds="true"
         android:padding="1dp"
         android:scaleType="fitCenter"
@@ -84,6 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292"
         app:srcCompat="@drawable/bewbarsha" />
 
 
