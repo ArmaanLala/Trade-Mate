@@ -106,7 +106,11 @@ public class CreatePostActivity extends AppCompatActivity {
                                     newPost.child("cost").setValue(PostDesc);
                                     newPost.child("imageUrl").setValue(downloadUrl.toString());
                                     newPost.child("uid").setValue(mCurrentUser.getUid());
+                                    newPost.child("taken").setValue(false);
+                                    newPost.child("key").setValue(newPost.getKey());
                                     newPost.child("name").setValue(mCurrentUser.getDisplayName())
+
+
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {

@@ -1,6 +1,7 @@
 package hack.gsu.trademate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +78,19 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setDesc(model.getCost());
                 viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
                 viewHolder.setUserName(model.getName());
-
+                viewHolder.setTakenButton(model.isTaken());
+                Button testWant = viewHolder.mView.findViewById(R.id.buttonWant);
+                testWant.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference mDatabase;
+// ...
+                        mDatabase = FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getKey());
+                        mDatabase.child("taken").setValue(true);
+                        viewHolder.setTakenButton(true);
+                        Toast.makeText(MainActivity.this,"Congrats, it is now yours",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         };
         recyclerView.setAdapter(FBRA);
@@ -84,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View mView;
-
+        Button want;
         public ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -111,5 +125,17 @@ public class MainActivity extends AppCompatActivity {
             TextView postUserName = mView.findViewById(R.id.post_user);
             postUserName.setText(userName);
         }
+         public void setTakenButton(boolean taken){
+              want = mView.findViewById(R.id.buttonWant);
+                if (taken) {
+                    want.setBackgroundColor(Color.GREEN);
+                    want.setText("Taken");
+                } else {
+
+
+                }
+
+            }
+
+        }
     }
-}
