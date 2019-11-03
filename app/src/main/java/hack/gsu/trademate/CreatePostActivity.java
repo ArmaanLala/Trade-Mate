@@ -64,8 +64,25 @@ public class CreatePostActivity extends AppCompatActivity {
         textDesc = (EditText)findViewById(R.id.textDesc);
         textTitle = (EditText)findViewById(R.id.textTitle);
         storage = FirebaseStorage.getInstance().getReference();
-        String s = database.getInstance().getReference().child("Colleges").child(mCurrentUser.getDisplayName()).getKey();
-        databaseRef = database.getInstance().getReference().child("Posts").child(s);
+        DatabaseReference college = database.getInstance().getReference().child("users").child(mCurrentUser.getDisplayName()).child("college");
+
+        college.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String s = dataSnapshot.getValue(String.class);
+                databaseRef = database.getInstance().getReference().child("Posts").child(s);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+//        databaseRef = database.getInstance().getReference().child("Posts").child(s);
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
         imageBtn = (ImageButton)findViewById(R.id.imageBtn);

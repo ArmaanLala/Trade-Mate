@@ -30,6 +30,11 @@ public class FinishSignUpActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
+        FirebaseUser test = FirebaseAuth.getInstance().getCurrentUser();
+        if ( test.getDisplayName() != null ){
+            Intent num1 = new Intent(FinishSignUpActivity.this, LoadActivity.class);
+            startActivity(num1);
+        }
 
         finishButton = findViewById(R.id.buttonFinish);
         editName = findViewById(R.id.editName);
@@ -56,10 +61,10 @@ public class FinishSignUpActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
+                User userTemp = new User(name,school);
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-//                mDatabase.child("users").child(name);
-                mDatabase.child("Colleges").child(name).setValue(school);
+                mDatabase.child("users").child(userTemp.getName()).setValue(userTemp);
+//                mDatabase.child("Colleges").child(name).setValue(school);
                 Intent intToMain = new Intent(FinishSignUpActivity.this, LoadActivity.class);
                 startActivity(intToMain);
 
