@@ -14,7 +14,7 @@
 <!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
 <!--    </android.support.design.widget.AppBarLayout>-->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,23 +23,29 @@
     android:background="@drawable/diff"
     tools:context="hack.gsu.trademate.MainActivity">
 
-<include layout="@layout/content_main" />
-
-    <Button
-        android:id="@+id/buttonAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-
-    </Button>
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        tools:layout_editor_absoluteX="-89dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="242dp"
-        android:layout_height="322dp"
+        android:layout_width="82dp"
+        android:layout_height="75dp"
         android:layout_alignParentRight="true"
         android:layout_gravity="right"
-        app:srcCompat="@drawable/plus" />
+        android:adjustViewBounds="true"
+        android:background="@drawable/circle"
+        android:padding="20dp"
+        android:radius="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946"
+        app:srcCompat="@drawable/plus"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,7 +67,7 @@ public class FinishSignUpActivity extends AppCompatActivity {
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 //                mDatabase.child("users").child(name);
                 mDatabase.child("Classes").child(name).setValue(school);
-                Intent intToMain = new Intent(FinishSignUpActivity.this, MainActivity.class);
+                Intent intToMain = new Intent(FinishSignUpActivity.this, LoadActivity.class);
                 startActivity(intToMain);
 
             }
