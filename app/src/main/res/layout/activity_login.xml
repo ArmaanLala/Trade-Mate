@@ -48,7 +48,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="72dp"
         android:background="@android:color/transparent"
-        android:fontFamily="serif"
+        android:fontFamily="@font/baloo_bhai"
         android:text="Login"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
