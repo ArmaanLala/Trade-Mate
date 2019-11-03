@@ -59,12 +59,14 @@ public class CreatePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         // initializing objects
         postBtn = (Button)findViewById(R.id.postBtn);
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
         textDesc = (EditText)findViewById(R.id.textDesc);
         textTitle = (EditText)findViewById(R.id.textTitle);
         storage = FirebaseStorage.getInstance().getReference();
-        databaseRef = database.getInstance().getReference().child("Posts");
-        mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        String s = database.getInstance().getReference().child("Colleges").child(mCurrentUser.getDisplayName()).getKey();
+        databaseRef = database.getInstance().getReference().child("Posts").child(s);
+
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
         imageBtn = (ImageButton)findViewById(R.id.imageBtn);
 
