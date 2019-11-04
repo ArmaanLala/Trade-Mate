@@ -43,7 +43,7 @@ public class FinishSignUpActivity extends AppCompatActivity {
 
         finishButton.setOnClickListener((v) -> {
             String name = editName.getText().toString();
-            String school = editSchool.getText().toString();
+            String school = editSchool.getText().toString().toUpperCase();
             if (!name.isEmpty() && !school.isEmpty()){
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
