@@ -197,8 +197,6 @@ public class MainActivity extends AppCompatActivity {
         public void setImageUrl(Context ctx, String imageUrl) {
             ImageView post_image = mView.findViewById(R.id.post_image);
             Picasso.with(ctx).load(imageUrl).into(post_image);
-//           Picasso.get().load("http://goo.gl/gEgYUd").into(post_image);
-            //glideImage(ctx,post_image);
         }
 
         public void setUserName(String userName) {
